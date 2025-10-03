@@ -1,4 +1,4 @@
-darabases:
+databases:
   - name: mysitedb
     plan: free
     databaseName: Ingredients
