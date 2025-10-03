@@ -1,8 +1,8 @@
 databases:
   - name: mysitedb
     plan: free
-    databaseName: Ingredients
-    user: Yamada
+    databaseName: ingredients
+    user: yamada
 services:
   - type: web
     plan: free
