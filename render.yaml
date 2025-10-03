@@ -1,0 +1,19 @@
+darabases:
+  - name: mysitedb
+    plan: free
+    databaseName: Ingredients
+    user: Yamada
+services:
+  - type: web
+    plan: free
+    name: recipeApp
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "python -m gunicorn recipe.asgi:application -k uvicorn.workers.UvicornWorker"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase: 
+          name: mysitedb
+          property: connectionString
+      - key: WEB_CONCURRENCY
+        value: 4
