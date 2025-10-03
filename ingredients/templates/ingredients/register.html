@@ -1,0 +1,16 @@
+{%load static%}
+<!doctype html>
+<html>
+    <head>
+        <title>食材登録</title>
+    </head>
+
+    <body>
+        <h1>食材登録</h1>
+        <form method = "post">
+            {% csrf_token %}
+            {{ form.as_p}}
+            <button type="submit">登録</button>
+        </form>
+    </body>
+</html>
