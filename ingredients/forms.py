@@ -7,7 +7,7 @@ from django.utils import timezone
 class IngredientForm(forms.ModelForm):
     class Meta:
         model = Ingredient
-        fields = ["name", "quantity", "date"]
+        fields = ["name", "quantity", "date", "expiry_type"]
         widgets={
             "date": DateInput(
                 attrs={

@@ -3,7 +3,7 @@ from .models import Ingredient, Condition
 
 @admin.register(Ingredient)
 class FoodAdmin(admin.ModelAdmin):
-    list_display = ('name', 'quantity', 'date')
+    list_display = ('name', 'quantity', 'date', 'expiry_type')
 
 @admin.register(Condition)
 class ConditionAdmin(admin.ModelAdmin):

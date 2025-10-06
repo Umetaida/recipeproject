@@ -30,6 +30,12 @@ class IngredientViewSet(viewsets.ModelViewSet):
     queryset = Ingredient.objects.all()#食材データを全部対象にする
     serializer_class = IngredientSerializer#JSON変換のためにシリアライザを利用
     
+
+#体調
+class ConditionViewSet(viewsets.ModelViewSet):
+    queryset = Condition.objects.all().order_by('-created_at')#体調データを全部対象にして、それらを新しい順に並べる
+    serializer_class = ConditionSerializer#JSON変換のためにシリアライザを利用
+    
     def create(self, request, *args, **kwargs):
         data = request.data.copy()
 
@@ -41,11 +47,6 @@ class IngredientViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         return Response(serializer.data, status=201)
-
-#体調
-class ConditionViewSet(viewsets.ModelViewSet):
-    queryset = Condition.objects.all().order_by('-created_at')#体調データを全部対象にして、それらを新しい順に並べる
-    serializer_class = ConditionSerializer#JSON変換のためにシリアライザを利用
 
     #最新の体調だけを返す
     @action(detail=False, methods=['get'])#detail=False → 一覧のような「全体」に対する処理
