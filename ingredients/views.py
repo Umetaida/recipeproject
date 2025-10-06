@@ -29,6 +29,18 @@ class IngredientListView(ListView):
 class IngredientViewSet(viewsets.ModelViewSet):
     queryset = Ingredient.objects.all()#食材データを全部対象にする
     serializer_class = IngredientSerializer#JSON変換のためにシリアライザを利用
+    
+    def create(self, request, *args, **kwargs):
+        data = request.data.copy()
+
+        # expiry_type が未指定なら空文字を代入（NoneだとDB保存時にエラー）
+        if "expiry_type" not in data or data["expiry_type"] == "":
+            data["expiry_type"] = None
+
+        serializer = self.get_serializer(data=data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        return Response(serializer.data, status=201)
 
 #体調
 class ConditionViewSet(viewsets.ModelViewSet):
