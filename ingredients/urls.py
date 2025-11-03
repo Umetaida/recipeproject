@@ -10,5 +10,9 @@ router.register(r'conditions', ConditionViewSet)
 
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('api/suggest/', views.ai_recipe_suggest, name='ai_recipe_suggest'),
+    path('api/save_recipe/', views.save_recipe, name='save_recipe'),
+    path('api/saved_recipes/', views.get_saved_recipes, name='saved_recipes'),
+    path('', include(router.urls)),  # routerは最後に
 ]
+
